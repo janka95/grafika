@@ -3,6 +3,8 @@
 #define VIEWPORT_RATIO (4.0 / 3.0)
 #define VIEWPORT_ASPECT 50.0
 
+float ambient_light[] = { 0.8f, 0.8f, 0.8f, 1.0f };
+
 struct {
     int x;
     int y;
@@ -10,6 +12,9 @@ struct {
 
 void display()
 {
+    
+    glLightfv(GL_LIGHT0, GL_AMBIENT, ambient_light);
+
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glMatrixMode(GL_MODELVIEW);
 
@@ -68,16 +73,16 @@ void keyboard(unsigned char key, int x, int y)
 {
     switch (key) {
     case 'w':
-        set_camera_speed(&camera, 1);
+        set_camera_speed(&camera, 3);
         break;
     case 's':
-        set_camera_speed(&camera, -1);
+        set_camera_speed(&camera, -3);
         break;
     case 'a':
-        set_camera_side_speed(&camera, 1);
+        set_camera_side_speed(&camera, 3);
         break;
     case 'd':
-        set_camera_side_speed(&camera, -1);
+        set_camera_side_speed(&camera, -3);
         break;
     case 't':
         if (is_preview_visible) {
@@ -87,6 +92,17 @@ void keyboard(unsigned char key, int x, int y)
             is_preview_visible = TRUE;
         }
         break;
+
+    case '+':
+        if (ambient_light[0] < 1.0)
+            ambient_light[0] = ambient_light[1] = ambient_light[2] += 0.05;
+            glLightfv(GL_LIGHT0, GL_AMBIENT, ambient_light);
+		break;
+	case '-':	
+        if (ambient_light[0] > 0.0)
+			ambient_light[0] = ambient_light[1] = ambient_light[2] -= 0.05;
+            glLightfv(GL_LIGHT0, GL_AMBIENT, ambient_light);
+		break;
     }
 
     glutPostRedisplay();
