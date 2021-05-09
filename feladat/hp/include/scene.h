@@ -8,10 +8,9 @@
 
 typedef struct Scene
 {
-    
-    Model kut;
+    Model base;
     Material material;
-    GLuint texture_id;
+    GLuint base_texture_id;
 } Scene;
 
 /**
@@ -34,9 +33,6 @@ void set_material(const Material* material);
  */
 void draw_scene(const Scene* scene);
 
-/**
- * Draw the origin of the world coordinate system.
- */
-void draw_origin();
+
 
 #endif /* SCENE_H */

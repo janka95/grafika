@@ -7,10 +7,8 @@
 
 void init_scene(Scene* scene)
 {
-    load_model(&(scene->kut), "kut.obj");
-    scene->texture_id = load_texture("kut.png"); 
-
-    glBindTexture(GL_TEXTURE_2D, scene->texture_id);
+    load_model(&(scene->base), "data/obj/base.obj");
+    scene->base_texture_id = load_texture("data/textures/base.bmp"); 
 
     scene->material.ambient.red = 0.8;
     scene->material.ambient.green = 0.8;
@@ -71,25 +69,15 @@ void draw_scene(const Scene* scene)
 {
     set_material(&(scene->material));
     set_lighting();
-    draw_origin();
-    draw_model(&(scene->kut));
+    
+
+    glPushMatrix();
+    glTranslatef(0.75, 5.87, 0);
+    glRotatef(90, 50, 1, 1);
+    glBindTexture(GL_TEXTURE_2D, scene->base_texture_id);
+    draw_model(&(scene->base));
+    glPopMatrix();
+    
 }
 
-void draw_origin()
-{
-    glBegin(GL_LINES);
 
-    glColor3f(1, 0, 0);
-    glVertex3f(0, 0, 0);
-    glVertex3f(1, 0, 0);
-
-    glColor3f(0, 1, 0);
-    glVertex3f(0, 0, 0);
-    glVertex3f(0, 1, 0);
-
-    glColor3f(0, 0, 1);
-    glVertex3f(0, 0, 0);
-    glVertex3f(0, 0, 1);
-
-    glEnd();
-}
