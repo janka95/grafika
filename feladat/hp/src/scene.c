@@ -10,6 +10,9 @@ void init_scene(Scene* scene)
     load_model(&(scene->base), "data/obj/base.obj");
     scene->base_texture_id = load_texture("data/textures/base.bmp"); 
 
+    load_model(&(scene->harry), "data/obj/harry.obj");
+    scene->harry_texture_id = load_texture("data/textures/harry.png"); 
+
     scene->material.ambient.red = 0.8;
     scene->material.ambient.green = 0.8;
     scene->material.ambient.blue = 0.8;
@@ -78,6 +81,12 @@ void draw_scene(const Scene* scene)
     draw_model(&(scene->base));
     glPopMatrix();
     
+    glPushMatrix();
+    glTranslatef(0.0, 0.0, 0.2);
+    glRotatef(90, 50, 1, 1);
+    glBindTexture(GL_TEXTURE_2D, scene->harry_texture_id);
+    draw_model(&(scene->harry));
+    glPopMatrix();
 }
 
 
