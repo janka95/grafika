@@ -13,6 +13,9 @@ void init_scene(Scene* scene)
     load_model(&(scene->harry), "data/obj/harry.obj");
     scene->harry_texture_id = load_texture("data/textures/harry.png"); 
 
+     load_model(&(scene->snitch), "data/obj/snitch.obj");
+    scene->snitch_texture_id = load_texture("data/textures/snitch.png"); 
+
     scene->material.ambient.red = 0.8;
     scene->material.ambient.green = 0.8;
     scene->material.ambient.blue = 0.8;
@@ -86,6 +89,13 @@ void draw_scene(const Scene* scene)
     glRotatef(90, 50, 1, 1);
     glBindTexture(GL_TEXTURE_2D, scene->harry_texture_id);
     draw_model(&(scene->harry));
+    glPopMatrix();
+
+    glPushMatrix();
+    glTranslatef(0.3, 3.0, 0.2);
+    glRotatef(90, 50, 1, 1);
+    glBindTexture(GL_TEXTURE_2D, scene->snitch_texture_id);
+    draw_model(&(scene->snitch));
     glPopMatrix();
 }
 

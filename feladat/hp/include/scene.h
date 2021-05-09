@@ -10,9 +10,11 @@ typedef struct Scene
 {
     Model base;
     Model harry;
+    Model snitch;
     Material material;
     GLuint base_texture_id;
     GLuint harry_texture_id;
+    GLuint snitch_texture_id;
 } Scene;
 
 /**
