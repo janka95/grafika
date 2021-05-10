@@ -13,14 +13,15 @@ void init_scene(Scene* scene)
     load_model(&(scene->harry), "data/obj/harry.obj");
     scene->harry_texture_id = load_texture("data/textures/harry.png"); 
 
-     load_model(&(scene->snitch), "data/obj/snitch.obj");
+    load_model(&(scene->snitch), "data/obj/snitch.obj");
     scene->snitch_texture_id = load_texture("data/textures/snitch.png");
+
+    scene->help_texture_id = load_texture("data/textures/help.png");
 
     scene->snitch_rotation = 0.0;
     scene->harry_rotation = 0.0;
-    /*scene->snitch_rotation_ownaxis = 0.0*/
+    scene->snitch_rotation_ownaxis = 0.0;
     
-
     scene->material.ambient.red = 0.8;
     scene->material.ambient.green = 0.8;
     scene->material.ambient.blue = 0.8;
@@ -41,7 +42,6 @@ void update_scene(Scene* scene, double time)
      scene->snitch_rotation += 100.0 * time; 
      scene->harry_rotation += 50.0 * time;
      scene->snitch_rotation_ownaxis += 1000.0 * time;
-     
      
 }
 
@@ -117,6 +117,36 @@ void draw_scene(const Scene* scene)
     glBindTexture(GL_TEXTURE_2D, scene->snitch_texture_id);
     draw_model(&(scene->snitch));
     glPopMatrix();
+}
+
+void draw_help(int texture) {
+
+
+    glDisable(GL_LIGHTING);
+    glDisable(GL_DEPTH_TEST);
+    glEnable(GL_COLOR_MATERIAL);
+
+    glMatrixMode(GL_MODELVIEW);
+    
+    glBindTexture(GL_TEXTURE_2D, texture);
+    glLoadIdentity();
+    glColor3f(1, 1, 1);
+
+    glBegin(GL_QUADS);
+    glTexCoord2f(0, 0);
+    glVertex3f(-1.99, 1.5, -3);
+    glTexCoord2f(1, 0);
+    glVertex3f(1.99, 1.5, -3);
+    glTexCoord2f(1, 1);
+    glVertex3f(1.99, -1.5, -3);
+    glTexCoord2f(0, 1);
+    glVertex3f(-1.99, -1.5, -3);
+    glEnd();
+
+    glDisable(GL_COLOR_MATERIAL);
+    glEnable(GL_LIGHTING);
+    glEnable(GL_DEPTH_TEST);
+    
 }
 
 

@@ -37,6 +37,11 @@ void mouse(int button, int state, int x, int y);
 void motion(int x, int y);
 
 /**
+ * Call after special key event.
+ */
+void specialKeyHandler(int key, int x, int y);
+
+/**
  * Call after keyboard event.
  */
 void keyboard(unsigned char key, int x, int y);

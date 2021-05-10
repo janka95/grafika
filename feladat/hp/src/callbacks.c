@@ -1,5 +1,9 @@
 #include "callbacks.h"
 
+#include "obj/draw.h"
+#include <obj/load.h>
+#include <GL/glut.h>
+
 #define VIEWPORT_RATIO (4.0 / 3.0)
 #define VIEWPORT_ASPECT 50.0
 
@@ -10,13 +14,14 @@ struct {
     int y;
 } mouse_position;
 
+int help_on = 0;
+
 void display()
 {
-    
     glLightfv(GL_LIGHT0, GL_AMBIENT, ambient_light);
-
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glMatrixMode(GL_MODELVIEW);
+    
 
     glPushMatrix();
     set_view(&camera);
@@ -25,6 +30,17 @@ void display()
 
     if (is_preview_visible) {
         show_texture_preview();
+    }
+
+    if(help_on)
+    {
+        glLoadIdentity();    
+                
+        gluOrtho2D(0, 640, 480, 0);
+                
+        draw_help(scene.help_texture_id);
+
+        glLightfv(GL_LIGHT0, GL_AMBIENT, ambient_light);
     }
 
     glutSwapBuffers();
@@ -67,6 +83,19 @@ void motion(int x, int y)
     mouse_position.x = x;
     mouse_position.y = y;
     glutPostRedisplay();
+}
+
+void specialKeyHandler(int key, int x, int y)
+{
+    switch (key) {
+        case GLUT_KEY_F1:
+            if(help_on == 1)
+			{
+				help_on = 0;
+			}
+			else help_on = 1;
+            
+    }
 }
 
 void keyboard(unsigned char key, int x, int y)
@@ -123,6 +152,7 @@ void keyboard_up(unsigned char key, int x, int y)
 
     glutPostRedisplay();
 }
+
 
 void idle()
 {

@@ -15,10 +15,11 @@ typedef struct Scene
     GLuint base_texture_id;
     GLuint harry_texture_id;
     GLuint snitch_texture_id;
+    GLuint help_texture_id;
     float snitch_rotation;
     float snitch_rotation_ownaxis;
     float harry_rotation;
-    
+
 } Scene;
 
 /**
@@ -26,6 +27,9 @@ typedef struct Scene
  */
 void init_scene(Scene* scene);
 
+/**
+ * Update loaded scenes.
+ */
 void update_scene(Scene* scene, double time);
 
 /**
@@ -42,6 +46,11 @@ void set_material(const Material* material);
  * Draw the scene objects.
  */
 void draw_scene(const Scene* scene);
+
+/**
+ * Draw the help window.
+ */
+void draw_help(int texture);
 
 
 
