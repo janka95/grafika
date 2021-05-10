@@ -75,6 +75,8 @@ void draw_scene(const Scene* scene)
 {
     set_material(&(scene->material));
     set_lighting(); 
+
+    
     
 
     glPushMatrix();
@@ -92,7 +94,7 @@ void draw_scene(const Scene* scene)
     glPopMatrix();
 
     glPushMatrix();
-    glTranslatef(0.3, 3.0, 0.2);
+    glTranslatef(0.0, -1.0, 1.5);
     glRotatef(90, 50, 1, 1);
     glBindTexture(GL_TEXTURE_2D, scene->snitch_texture_id);
     draw_model(&(scene->snitch));
