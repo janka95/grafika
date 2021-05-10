@@ -15,12 +15,18 @@ typedef struct Scene
     GLuint base_texture_id;
     GLuint harry_texture_id;
     GLuint snitch_texture_id;
+    float snitch_rotation;
+    float snitch_rotation_ownaxis;
+    float harry_rotation;
+    
 } Scene;
 
 /**
  * Initialize the scene by loading models.
  */
 void init_scene(Scene* scene);
+
+void update_scene(Scene* scene, double time);
 
 /**
  * Set the lighting of the scene.

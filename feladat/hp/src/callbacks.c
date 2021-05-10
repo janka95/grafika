@@ -100,7 +100,7 @@ void keyboard(unsigned char key, int x, int y)
 		break;
 	case '-':	
         if (ambient_light[0] > 0.0)
-			ambient_light[0] = ambient_light[1] = ambient_light[2] -= 0.05;
+			ambient_light[0] = ambient_light[1] = ambient_light[2] -= 0.05 ;
             glLightfv(GL_LIGHT0, GL_AMBIENT, ambient_light);
 		break;
     }
@@ -135,6 +135,8 @@ void idle()
     last_frame_time = current_time;
 
     update_camera(&camera, elapsed_time);
+
+    update_scene(&scene, elapsed_time);
 
     glutPostRedisplay();
 }
