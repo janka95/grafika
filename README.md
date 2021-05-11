@@ -14,6 +14,7 @@ Objektumok:
 - base: alapkörnyezet= skybox + házikó
 - harry: Harry Potter, a film egyik karaktere
 - snitch: aranycikesz, a film egy ismert eleme, tárgya
+Az objektumok a Blender programmal vannak textúrázva. 
 -----------------------------------------------------
 Animáció:
 - Harry próbálja elkapni az aranycikeszt: a harry és a snitch objektum a saját tengelyük mentén mozognak.
